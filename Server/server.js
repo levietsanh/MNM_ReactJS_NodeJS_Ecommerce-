@@ -16,9 +16,9 @@ app.get("/api/products",(req,res) => {
 //Single product from server
 app.get("/api/products/:id",(req,res) => {
     const product = products.find((p) => p._id === req.params.id);
-    res.json(product);
+    res.json(products);
 });
 
 const PORT = process.env.PORT || 1000;
 
-app.listen(PORT,console.log(`server running in port ${PORT}`));
+app.listen(5000,console.log(`server running in port ${PORT}`));
