@@ -3,21 +3,21 @@ import mongoose from "mongoose";
 const UserSchema =mongoose.Schema({
     name:{
         type:String,
-        require:true
+        required:true
     },
     email:{
         type:String,
-        require:true,
+        required:true,
         unique:true,
 
     },
     password:{
         type:String,
-        require:true,
+        required:true,
     },
     isAdmin:{
         type:Boolean,
-        require:true,
+        required:true,
         default:false
     }
 },
@@ -25,4 +25,7 @@ const UserSchema =mongoose.Schema({
 timestamps:true
 
 
-})
+});
+
+const User=mongoose.model("User",UserSchema)
+export default User;
