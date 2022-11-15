@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Product from './../../dashboard/src/components/products/Product';
+
 
 const reviewsSchema=mongoose.Schema({
     name:{
@@ -67,4 +67,4 @@ timestamps:true
 });
 
 const Product=mongoose.model("Product",productSchema)
-export default User;
+export default Product;

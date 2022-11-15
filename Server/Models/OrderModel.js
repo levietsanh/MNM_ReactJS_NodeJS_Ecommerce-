@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import products from './../data/Products';
+
 
 const orderSchema =mongoose.Schema({
     user:{
