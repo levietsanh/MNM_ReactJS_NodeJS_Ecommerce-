@@ -3,7 +3,7 @@ import products from "./data/Products.js";
 import dotenv from "dotenv";
 import connectDatabase from "./config/MongoDd.js";
 dotenv.config();
-connectDatabase;
+connectDatabase();
 const app = express();
 
 //Load product from server
@@ -21,4 +21,4 @@ app.get("/api/products/:id",(req,res) => {
 
 const PORT = process.env.PORT || 1000;
 
-app.listen(5000,console.log(`server running in port ${PORT}`));
+app.listen(PORT,console.log(`server running in port ${PORT}`));
