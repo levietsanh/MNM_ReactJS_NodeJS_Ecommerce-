@@ -2,9 +2,16 @@ import express from "express";
 import products from "./data/Products.js";
 import dotenv from "dotenv";
 import connectDatabase from "./config/MongoDd.js";
+import { errorHandler, notFound } from "./Middleware/Errors.js";
 dotenv.config();
 connectDatabase();
 const app = express();
+
+//Error Handler
+app.use(notFound);
+app.use(errorHandler);
+
+
 
 //Load product from server
 
