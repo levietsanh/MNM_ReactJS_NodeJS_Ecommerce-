@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Product from './../../dashboard/src/components/products/Product';
+
 
 const reviewsSchema=mongoose.Schema({
     name:{
