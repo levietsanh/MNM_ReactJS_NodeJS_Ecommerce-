@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDatabase from "./config/MongoDd.js";
 import ImportData from "./DataImport.js";
 import productRoute from "./Routes/ProductRoutes.js";
+import { errorHandler, notFound } from "./Middleware/Errors.js";
 dotenv.config();
 connectDatabase();
 const app = express();
@@ -20,9 +21,13 @@ const app = express();
 //     const product = products.find((p) => p._id === req.params.id);
 //     res.json(products);
 // });
+
 // Api
 app.use("/api/import", ImportData);
 app.use("/api/products", productRoute);
+//Error handler
+app.use(notFound);
+app.use(errorHandler);
 
 app.get ("/", (req,res) =>{
   res.send("API is running");
