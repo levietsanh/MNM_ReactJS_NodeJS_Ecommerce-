@@ -1,26 +1,42 @@
-import React, {useEffect,useState} from "react";
+import React, {useEffect} from "react";
 import Header from "./../components/Header";
 import Rating from "../components/homeComponents/Rating";
 import { Link } from "react-router-dom";
 import Message from "./../components/LoadingError/Error";
-import axios from "axios";
+import {useDispatch,useSelector} from "react-redux";
+import { listProductDetails } from "../Redux/Actions/ProductActions";
+import Loading from './../components/LoadingError/Loading';
+
 
 const SingleProduct = ({ match }) => {
-  const [product,setProduct] = useState({});
+  // const [product,setProduct] = useState({});
 
-  useEffect(() => {
+  const productId = match.params.id;
+  const dispatch = useDispatch();
+
+   const productDetails = useSelector((state) => state.productDetails);
+   const { loading, error, product}= productDetails;
+
+  useEffect(() => {     
     // console.log("hello");
-    const fetchproduct = async() =>{
-      const {data} = await axios.get(`/api/products/${match.params.id}`);
-      setProduct(data)
-    };
-    fetchproduct();
-  }, [match]);
+  dispatch(listProductDetails(productId));
+    
+  }, [dispatch, productId]);
   return (
     <>
       <Header />
       <div className="container single-product">
-        <div className="row">
+        {
+          loading ? (
+            <Loading/>
+          )
+          : error ?(
+            <Message variant="alert-danger">{error}</Message>
+          )
+          : 
+          (
+            <>
+                     <div className="row">
           <div className="col-md-6">
             <div className="single-image">
               <img src={product.image} alt={product.name} />
@@ -130,6 +146,10 @@ const SingleProduct = ({ match }) => {
             </div>
           </div>
         </div>
+            </>
+          )
+        }
+ 
       </div>
     </>
   );
