@@ -13,7 +13,12 @@ const Toast = () => {
       />
       {/* Same as */}
       <ToastContainer />
+
+      
     </div>
+    
+
+
   );
 };
 

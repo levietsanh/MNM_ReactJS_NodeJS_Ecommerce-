@@ -5,7 +5,7 @@ import { productDetailsReducer,
        
         productListReducer, 
       }  from "./Reducers/ProductReducers";
-import { userLoginReducer, userRegisterReducer } from "./Reducers/userReducers";
+import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./Reducers/userReducers";
 
 
 
@@ -15,6 +15,8 @@ import { userLoginReducer, userRegisterReducer } from "./Reducers/userReducers";
    productDetails:productDetailsReducer,
    userLogin:userLoginReducer,
    userRegister:userRegisterReducer,
+   userDetails:userDetailsReducer,
+   userUpdateProfile:userUpdateProfileReducer,
  });
 
 //login
