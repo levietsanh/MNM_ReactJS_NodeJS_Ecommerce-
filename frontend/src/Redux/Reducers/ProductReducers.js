@@ -1,4 +1,5 @@
 
+
 import { 
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 
@@ -10,6 +11,7 @@ import {
 
 //product list
 export const productListReducer= (state ={products:[]},action)=>{
+
     switch(action.type){
         case PRODUCT_LIST_REQUEST:
             return {loading :true, products:[]};
@@ -21,6 +23,7 @@ export const productListReducer= (state ={products:[]},action)=>{
             return state;
     }
 };
+
 //single product
 export const productDetailsReducer=(
     state = { product: {reviews:[]} },
@@ -29,6 +32,9 @@ export const productDetailsReducer=(
     switch(action.type){
         case PRODUCT_DETAILS_REQUEST:
             return {...state, loading: true};
+
+
+
         case PRODUCT_DETAILS_SUCCESS:
             return {loading :false, product:action.payload};
         case PRODUCT_DETAILS_FAIL:

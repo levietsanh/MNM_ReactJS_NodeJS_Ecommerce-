@@ -1,9 +1,12 @@
+
 import React, {useEffect, useState} from "react";
+
 import Header from "./../components/Header";
 import Rating from "../components/homeComponents/Rating";
 import { Link } from "react-router-dom";
 import Message from "./../components/LoadingError/Error";
 import {useDispatch,useSelector} from "react-redux";
+
 import { listProductDetails } from "../Redux/Actions/ProductActions";
 import Loading from './../components/LoadingError/Loading';
 
@@ -28,10 +31,12 @@ const SingleProduct = ({ history,match }) => {
       history.push(`/cart/${productId}?qty=${qty}`);
 
   };
+
   return (
     <>
       <Header />
       <div className="container single-product">
+
         {
           loading ? (
             <Loading/>
@@ -43,6 +48,7 @@ const SingleProduct = ({ history,match }) => {
           (
             <>
                      <div className="row">
+
           <div className="col-md-6">
             <div className="single-image">
               <img src={product.image} alt={product.name} />
@@ -155,10 +161,12 @@ const SingleProduct = ({ history,match }) => {
             </div>
           </div>
         </div>
+
             </>
           )
         }
  
+
       </div>
     </>
   );
