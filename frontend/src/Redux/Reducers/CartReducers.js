@@ -40,7 +40,7 @@ export const cartReducer =  (state = {cartItems: [], shippingAddress: {} },
             return {
                 ...state,
                 paymentMethod: action.payload,
-            }
+            };
 
             default:
                 return state;
