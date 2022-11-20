@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
 
-const reviewsSchema=mongoose.Schema({
+const reviewsSchema=mongoose.Schema(
+    {
     name:{
         type:String,
         required:true,
@@ -12,7 +13,7 @@ const reviewsSchema=mongoose.Schema({
         required:true,
 
     },
-    Comment:{
+    comment:{
         type:String,
         required:true,
     },
@@ -21,7 +22,11 @@ const reviewsSchema=mongoose.Schema({
         required:true,
         ref:"User",
     },
-})
+},
+{
+    timestamps:true, 
+}
+);
 
 const productSchema =mongoose.Schema({
     name:{
