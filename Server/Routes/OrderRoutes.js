@@ -1,7 +1,7 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import protect from "../Middleware/AuthMiddleware.js";
-import Order from "../Models/OrderModel.js";
+import Order from "./../Models/OrderModel.js";
 const orderRouter = express.Router();
 //Order
 orderRouter.post(
@@ -26,6 +26,7 @@ orderRouter.post(
         else{
             const order = new Order({
                 orderItems, 
+                user: req.user._id,
                 shippingAddress, 
                 paymentMethod, 
                 itemsPrice, 
