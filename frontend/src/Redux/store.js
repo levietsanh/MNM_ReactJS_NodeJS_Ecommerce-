@@ -6,7 +6,7 @@ import { productListReducer, productDetailsReducer, productCreateReviewReducer, 
 import { cartReducer } from "./Reducers/CartReducers";
 
 import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./Reducers/UserReducers";
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from "./Reducers/OrderReducers";
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer } from "./Reducers/OrderReducers";
 
 
 
@@ -26,6 +26,7 @@ import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from "./Redu
    orderCreate: orderCreateReducer,
    orderDetails: orderDetailsReducer,
    orderPay: orderPayReducer,
+   orderListMy: orderListMyReducer,
 
  });
 
