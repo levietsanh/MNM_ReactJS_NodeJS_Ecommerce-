@@ -58,9 +58,6 @@ const PlaceOrderScreen = ({history}) => {
       })
     );  
   };
-
- 
-
   return (
     <>
       <Header />
