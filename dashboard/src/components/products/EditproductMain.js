@@ -7,6 +7,10 @@ import { useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { toast } from 'react-toastify';
 import { EditProduct } from "../../Redux/Actions/ProductActions";
+import { PRODUCT_UPDATE_RESET } from "../../Redux/Constants/ProductConstants";
+import { updateProducts } from './../../Redux/Actions/ProductActions';
+import Message from "../LoadingError/Error";
+import Loading from "../LoadingError/Loading";
 
 
 const Toastobjects={
@@ -27,24 +31,40 @@ const EditProductMain = (props) => {
   const productEdit=useSelector((state)=>state.productEdit)
   const{loading,error,product}=productEdit;
 
+  const productUpdate=useSelector((state)=>state.productUpdate)
+  const{loading:loadingUpdate,error:errorUpdate,success:successUpdate}=productUpdate;
+
   useEffect(()=>{
-    if(!product.name||product.id !==product.Id){
-      toast.success("Product Added ",Toastobjects);
-      dispatch(EditProduct(productId));
-     
-    }else{
-      setName(product.name);
-      setDescription(product.description);
-      setPrice(product.price);
-      setImage(product.image);
-      setCoutInstock(product.countInStock);
+    if (successUpdate) {
+      dispatch({type:PRODUCT_UPDATE_RESET});
+      toast.success("Product updated",Toastobjects);
+    } else {
+      if(!product.name||product.id !==product.Id){
+        toast.success("Product Added ");
+        dispatch(EditProduct(productId));
+       
+      }else{
+        setName(product.name);
+        setDescription(product.description);
+        setPrice(product.price);
+        setImage(product.image);
+        setCoutInstock(product.countInStock);
+      }
+      
     }
-  },[product,dispatch,productId]);
+   
+  },[product,dispatch,productId,successUpdate]);
+
+  const submitHandler=(e)=>{
+      e.preventDefault();
+      dispatch(updateProducts({_id:productId,name,price,description,image,countInStock}));
+  };
 
   return (
     <>
+      <Toast/>
       <section className="content-main" style={{ maxWidth: "1200px" }}>
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
               Go to products
@@ -61,7 +81,14 @@ const EditProductMain = (props) => {
             <div className="col-xl-8 col-lg-8">
               <div className="card mb-4 shadow-sm">
                 <div className="card-body">
-                  <div className="mb-4">
+                {errorUpdate && <Message variant={"alert-danger"}>{error}</Message>}
+                {loadingUpdate && <Loading/>}
+                {
+                  loading ? <Loading/>:error?(<Message variant={"alert-danger"}>{error}</Message>)
+                  :
+                  (
+                    <>
+                    <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
                       Product title
                     </label>
@@ -124,6 +151,10 @@ const EditProductMain = (props) => {
                       onChange={(e)=>setImage(e.target.value)}
                     />
                   </div>
+                    </>
+                  )
+                }
+               
                 </div>
               </div>
             </div>

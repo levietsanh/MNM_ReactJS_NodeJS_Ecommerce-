@@ -147,7 +147,7 @@ productRoute.post(
     })
 );
 
-//Edit product
+//UPDATE product
 productRoute.put(
     "/:id" ,protect,admin,
     asyncHandler(
