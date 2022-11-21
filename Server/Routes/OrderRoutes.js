@@ -61,7 +61,7 @@ const orderRouter = express.Router();
 
     );
     // order is paid
-    //Get order by id
+   
     orderRouter.put(
         "/:id/pay" ,
         protect,
@@ -88,5 +88,16 @@ const orderRouter = express.Router();
 
     );
 
+// user login orders
+orderRouter.get(
+    "/" ,
+    protect,
+    asyncHandler(async(req, res) =>{
+        const order= await Order.find({user: req.user._id}).sort({_id: -1});
+
+            res.json(order);   
+    })
+
+);
 
 export default orderRouter;
