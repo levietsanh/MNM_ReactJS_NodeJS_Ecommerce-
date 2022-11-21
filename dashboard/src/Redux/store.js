@@ -15,7 +15,7 @@ import { productCreateReducer, productDeleteReducer, productEditReducer, product
     productList:productListReducer,
     deleteProduct:productDeleteReducer,
     createProduct:productCreateReducer,
-    prodcutEdit:productEditReducer,
+    productEdit:productEditReducer,
    
 
  });
