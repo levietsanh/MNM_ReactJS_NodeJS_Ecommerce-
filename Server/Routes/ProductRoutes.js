@@ -2,7 +2,7 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import products from "../data/Products.js";
 import Product from "./../Models/ProductModel.js";
-import protect from "./../Middleware/AuthMiddleware.js";
+import {protect,admin} from "./../Middleware/AuthMiddleware.js";
 
 
 
@@ -26,6 +26,14 @@ productRoute.get(
             res.json({products,page,pages:Math.ceil(count / pageSize)});
     })
 );
+
+//Admin get all product
+productRoute.get("/all",protect,admin,asyncHandler(async(req,res)=>{
+    const products=await Product.find({}).sort({_id:-1})
+    res.json(products);
+}))
+
+
 //get product by id
 productRoute.get(
     "/:id" ,
@@ -83,4 +91,60 @@ productRoute.post(
           
     })
 );
+
+
+//DELETE PRODCUT
+productRoute.delete(
+    "/:id" ,protect,admin,
+    asyncHandler(
+    async(req,res) =>{
+            const product = await Product.findById(req.params.id);
+            if(product){
+                await product.remove();
+                res.json({message:"Product deleted"});
+            }
+            else{
+                res.status(404);
+                throw new Error("Product not found");
+            }
+          
+    })
+);
+
+
+// create product
+productRoute.post(
+    "/" ,protect,admin,
+    asyncHandler(
+    async(req,res) =>{
+             const {name,price,description,image,countInStock}=req.body;
+             const productExist= await Product.findOne({name});
+          //  const product = await Product.findById(req.params.id);
+            if(productExist){
+               res.status(400);
+               throw new Error("Product name is ready exist");
+            }
+            else{
+                const product= new Product({
+                    name,
+                    price,
+                    description,
+                    image,
+                    countInStock,
+                    user:req.user._id,
+                })
+                if(product){
+                    const createdproduct=await product.save();
+                    res.status(201).json(createdproduct);
+                }
+                else{
+                    res.status(400);
+                    throw new Error("Invalid product data");
+                }
+                
+            }
+          
+    })
+);
+
 export default productRoute;

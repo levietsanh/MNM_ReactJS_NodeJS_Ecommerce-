@@ -1,8 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { deleteProducts } from "../../Redux/Actions/ProductActions";
 
 const Product = (props) => {
   const { product } = props;
+  const dispatch=useDispatch();
+
+  const deleteHandler=(id)=>{
+    if(window.confirm("Are you sure ?")){
+      dispatch(deleteProducts(id));
+    }
+
+  };
 
   return (
     <>
@@ -24,7 +34,7 @@ const Product = (props) => {
                 <i className="fas fa-pen"></i>
               </Link>
               <Link
-                to="#"
+                to="#" onClick={()=>deleteHandler(product._id)}
                 className="btn btn-sm btn-outline-danger p-2 pb-3 col-md-6"
               >
                 <i className="fas fa-trash-alt"></i>
