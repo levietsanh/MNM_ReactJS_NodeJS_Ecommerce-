@@ -6,7 +6,7 @@ import { productListReducer, productDetailsReducer, } from "./Reducers/ProductRe
 import { cartReducer } from "./Reducers/CartReducers";
 
 import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./Reducers/UserReducers";
-import { orderCreateReducer } from "./Reducers/OrderReducers";
+import { orderCreateReducer, orderDetailsReducer } from "./Reducers/OrderReducers";
 
 
 
@@ -22,6 +22,7 @@ import { orderCreateReducer } from "./Reducers/OrderReducers";
    userDetails:userDetailsReducer,
    userUpdateProfile:userUpdateProfileReducer,
    orderCreate: orderCreateReducer,
+   orderDetails: orderDetailsReducer,
  });
 
   const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
