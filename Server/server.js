@@ -29,7 +29,7 @@ app.use(express.json());
 app.use("/api/import", ImportData);
 app.use("/api/products", productRoute);
 app.use("/api/users", userRouter);
-app.use("/api/orders",orderRouter);
+app.use("/api/orders", orderRouter);
 //Error handler
 app.use(notFound);
 app.use(errorHandler);
