@@ -6,7 +6,7 @@ import { productListReducer, productDetailsReducer, } from "./Reducers/ProductRe
 import { cartReducer } from "./Reducers/CartReducers";
 
 import { userDetailsReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer } from "./Reducers/UserReducers";
-import { orderCreateReducer, orderDetailsReducer } from "./Reducers/OrderReducers";
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from "./Reducers/OrderReducers";
 
 
 
@@ -23,6 +23,7 @@ import { orderCreateReducer, orderDetailsReducer } from "./Reducers/OrderReducer
    userUpdateProfile:userUpdateProfileReducer,
    orderCreate: orderCreateReducer,
    orderDetails: orderDetailsReducer,
+   orderPay: orderPayReducer,
  });
 
   const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
