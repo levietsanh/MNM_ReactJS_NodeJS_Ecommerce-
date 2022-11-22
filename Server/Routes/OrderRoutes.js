@@ -89,7 +89,7 @@ const orderRouter = express.Router();
     );
 
 // user login orders
-orderRouter.get(
+    orderRouter.get(
     "/" ,
     protect,
     asyncHandler(async(req, res) =>{
@@ -99,5 +99,20 @@ orderRouter.get(
     })
 
 );
+
+//admin get all orders
+orderRouter.put(
+    "/all" ,
+    protect,
+    admin,
+    asyncHandler(async( req, res) =>{
+        const orders= await Order.find({})
+        .sort({ _id: -1})
+        .populate("user", "id name email");
+            res.json(orders);   
+    })
+
+);
+
 
 export default orderRouter;
