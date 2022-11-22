@@ -90,6 +90,8 @@ const orderRouter = express.Router();
     );
 
 // user login orders
+
+
 // orderRouter.get(
 //     "/all" ,
 //     protect,
@@ -105,11 +107,56 @@ const orderRouter = express.Router();
 //Admin get all order
 orderRouter.get(
     "/",
+
     protect,
     admin,
     asyncHandler(async(req,res)=>{
     const orders= await Order.find({}).sort({_id:-1}).populate("user","id name email");
     res.json(orders);
 }))
+
+
+  //Get order by id
+  orderRouter.get(
+    "/:id" ,
+    protect,
+    asyncHandler(async(req, res) =>{
+        const order= await Order.findById(req.params.id).populate(
+            "user",
+            "name email"
+        );
+
+        if (order) {
+            res.json(order);
+        }
+        else{
+            res.status(404);
+            throw new Error("Order Not Found");
+        }
+    })
+
+);
+// order is delivered
+
+orderRouter.put(
+    "/:id/delivered" ,
+    protect,
+    asyncHandler(async(req, res) =>{
+        const order= await Order.findById(req.params.id);
+
+        if (order) {
+            order.isDelivered = true
+            order.deliveredAt =Date.now();
+            
+            const updatedOrder = await order.save();
+            res.json(updatedOrder);
+        }
+        else{
+            res.status(404);
+            throw new Error("Order Not Found");
+        }
+    })
+
+);
 
 export default orderRouter;  

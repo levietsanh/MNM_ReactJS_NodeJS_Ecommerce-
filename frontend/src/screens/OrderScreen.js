@@ -115,7 +115,7 @@ const OrderScreen = ({match}) => {
                   order.isPaid ? (
                     <div className="bg-info p-2 col-12">
                     <p className="text-white text-center text-sm-start">
-                      Paid on {moment(order.paidAt).calendar()}
+                      Paid on {moment(order.paidAt).format("LLL")}
                     </p>
                   </div>
                   )
@@ -151,10 +151,10 @@ const OrderScreen = ({match}) => {
                           {order.shippingAddress.postalCode}
                 </p>
                 {
-                  order.isDelived ? (
+                  order.isDelivered ? (
                     <div className="bg-info p-2 col-12">
                     <p className="text-white text-center text-sm-start">
-                      Delivered on {moment(order.deliveredAt).calendar()}
+                      Delivered on {moment(order.deliveredAt).format("LLL")}
                     </p>
                   </div>
                   )
