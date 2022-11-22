@@ -30,6 +30,9 @@ app.use("/api/import", ImportData);
 app.use("/api/products", productRoute);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/config/paypal",(req,res)=>{
+  res.send(process.env.PAY_PAL_ID);
+})
 //Error handler
 app.use(notFound);
 app.use(errorHandler);
