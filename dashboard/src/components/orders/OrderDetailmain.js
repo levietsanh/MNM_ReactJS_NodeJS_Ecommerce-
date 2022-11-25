@@ -92,9 +92,10 @@ const OrderDetailmain = (props) => {
                       {
                         loadingDelivered &&<Loading/>
                       }
-                      <button onClick={deliveredHandler} className="btn btn-dark col-12">
+                      <Link to={`/order/${order._id}`} onClick={deliveredHandler}   className="btn btn-dark col-12">
+                      
                         MARK AS DELIVERED
-                      </button>
+                      </Link>
                     </>
                   
                   )
