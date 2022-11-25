@@ -70,6 +70,7 @@ const submitHandler=(e)=>{
                     <img alt="logo" src="/images/logo.png" />
                   </Link>
                 </div>
+                {/*danh muc */}
                 <div className="col-6 d-flex align-items-center justify-content-end Login-Register">
                 {
                   userInfo ?(
@@ -162,7 +163,9 @@ const submitHandler=(e)=>{
                     search
                   </button>
                 </form>
+                
               </div>
+              
               <div className="col-md-3 d-flex align-items-center justify-content-end Login-Register">
               {
                 userInfo ?(
